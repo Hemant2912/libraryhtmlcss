@@ -1,0 +1,128 @@
+/* Global */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: linear-gradient(135deg, #dfe9f3, #ffffff);
+    height: 100vh;
+}
+
+/* Center main area */
+.container {
+    width: 100%;
+    max-width: 500px;
+    margin: 40px auto;
+    text-align: center;
+}
+
+/* Main heading */
+h1 {
+    margin-bottom: 25px;
+    color: #1e293b;
+    font-size: 30px;
+    letter-spacing: 1px;
+}
+
+/* Menu buttons */
+.menu-card {
+    background: #ffffffcc;
+    backdrop-filter: blur(12px);
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.btn {
+    display: block;
+    background: #2563eb;
+    color: white;
+    padding: 12px;
+    text-decoration: none;
+    margin: 15px 0;
+    border-radius: 8px;
+    font-size: 18px;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #1e40af;
+    transform: translateY(-2px);
+}
+
+/* Card Layout for Forms */
+.card {
+    width: 95%;
+    max-width: 500px;
+    background: #ffffffdd;
+    backdrop-filter: blur(10px);
+    padding: 25px;
+    margin: 30px auto;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 15px;
+    color: #1e293b;
+}
+
+/* Form Controls */
+label {
+    display: block;
+    margin-bottom: 12px;
+    font-weight: 600;
+    text-align: left;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    margin-top: 5px;
+    font-size: 15px;
+}
+
+/* Buttons */
+button {
+    width: 100%;
+    padding: 12px;
+    background: #2563eb;
+    border: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+button:hover {
+    background: #1d4ed8;
+    transform: translateY(-2px);
+}
+
+/* Table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+th, td {
+    padding: 12px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+th {
+    background: #f1f5f9;
+    color: #1e293b;
+    font-weight: 600;
+}
+
+/* Message Text */
+.msg {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #0f172a;
+}
