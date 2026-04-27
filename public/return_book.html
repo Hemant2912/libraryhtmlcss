@@ -1,26 +1,35 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Return Book</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<h1>Return Book</h1>
+<div class="container">
+    <div class="card">
+        <h2>Return Book</h2>
 
-<form id="returnForm">
-    <label>Book ID:
-        <input type="text" id="returnBookId" required>
-    </label>
+        <form id="returnForm">
 
-    <label>Student ID:
-        <input type="text" id="returnStudentId" required>
-    </label>
+            <div class="form-group">
+                <label for="returnBookId">Book ID:</label>
+                <input type="text" id="returnBookId" required>
+            </div>
 
-    <button type="submit">Return Book</button>
-</form>
+            <div class="form-group">
+                <label for="returnStudentId">Student ID:</label>
+                <input type="text" id="returnStudentId" required>
+            </div>
 
-<p id="returnMsg" class="msg"></p>
+            <button type="submit">Return Book</button>
+        </form>
+
+        <p id="returnMsg" class="msg"></p>
+    </div>
+</div>
 
 <script src="return_book.js"></script>
 

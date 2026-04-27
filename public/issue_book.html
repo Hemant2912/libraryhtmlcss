@@ -1,26 +1,35 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Issue Book</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<h1>Issue Book</h1>
+<div class="container">
+    <div class="card">
+        <h2>Issue Book</h2>
 
-<form id="issueForm">
-    <label>Book ID:
-        <input type="text" id="issueBookId" required>
-    </label>
+        <form id="issueForm">
 
-    <label>Student ID:
-        <input type="text" id="issueStudentId" required>
-    </label>
+            <div class="form-group">
+                <label for="issueBookId">Book ID:</label>
+                <input type="text" id="issueBookId" required>
+            </div>
 
-    <button type="submit">Issue Book</button>
-</form>
+            <div class="form-group">
+                <label for="issueStudentId">Student ID:</label>
+                <input type="text" id="issueStudentId" required>
+            </div>
 
-<p id="issueMsg" class="msg"></p>
+            <button type="submit">Issue Book</button>
+        </form>
+
+        <p id="issueMsg" class="msg"></p>
+    </div>
+</div>
 
 <script src="issue_book.js"></script>
 

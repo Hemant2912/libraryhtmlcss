@@ -2,24 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Student</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<h2>Add Student</h2>
+<div class="container">
+    <div class="card">
+        <h2>Add Student</h2>
 
-<form id="studentForm">
-    <label>Student ID:</label>
-    <input type="text" id="studentId" required><br><br>
+        <form id="studentForm">
 
-    <label>Student Name:</label>
-    <input type="text" id="name" required><br><br>
+            <div class="form-group">
+                <label for="studentId">Student ID:</label>
+                <input type="text" id="studentId" required>
+            </div>
 
-    <button type="submit">Add Student</button>
-</form>
+            <div class="form-group">
+                <label for="name">Student Name:</label>
+                <input type="text" id="name" required>
+            </div>
 
-<p id="message" style="color: green; font-size:18px;"></p>
+            <button type="submit">Add Student</button>
+        </form>
+
+        <p id="message" class="msg"></p>
+    </div>
+</div>
 
 <script src="add_student.js"></script>
 </body>
