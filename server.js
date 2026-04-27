@@ -7,52 +7,45 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static("public"));
 
-// Connect MongoDB
-mongoose.connect("mongodb://127.0.0.1:27017/librarydb")
+// ✅ FIXED MONGODB CONNECTION
+mongoose.connect("mongodb+srv://admin:Hemantji%401234@cluster0.a6chbua.mongodb.net/librarydb")
 .then(() => console.log("MongoDB Connected"))
 .catch(err => console.log("MongoDB Error:", err));
 
-// Book Model
+// Models
 const Book = mongoose.model("Book", new mongoose.Schema({
     title: String,
     author: String,
     stock: Number
 }));
 
-// Student Model
 const Student = mongoose.model("Student", new mongoose.Schema({
     studentId: String,
     name: String
 }));
 
-// Issue Book Model
 const Issued = mongoose.model("Issued", new mongoose.Schema({
     studentId: String,
     bookId: String,
     issueDate: Date
 }));
 
-// ---------------------- API ROUTES ----------------------
-
-// View all books
+// Routes
 app.get("/books", async (req, res) => {
     const books = await Book.find();
     res.json(books);
 });
 
-// Add book
 app.post("/books", async (req, res) => {
     const book = await Book.create(req.body);
     res.json({ message: "Book added successfully", book });
 });
 
-// Add student
 app.post("/students", async (req, res) => {
     await Student.create(req.body);
     res.json({ message: "Student added" });
 });
 
-// Issue book
 app.post("/issue", async (req, res) => {
     const { studentId, bookId } = req.body;
 
@@ -72,7 +65,6 @@ app.post("/issue", async (req, res) => {
     res.json({ message: "Book issued successfully" });
 });
 
-// Return book
 app.post("/return", async (req, res) => {
     const { studentId, bookId } = req.body;
 
@@ -88,4 +80,6 @@ app.post("/return", async (req, res) => {
     res.json({ message: "Book returned successfully" });
 });
 
-app.listen(3000, () => console.log("Server running at http://localhost:3000"));
+// ✅ PORT FIX FOR RENDER
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
