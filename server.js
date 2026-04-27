@@ -8,7 +8,7 @@ app.use(express.json());
 app.use(express.static("public"));
 
 // ✅ FIXED MONGODB CONNECTION
-mongoose.connect("mongodb+srv://admin:Hemantji%401234@cluster0.a6chbua.mongodb.net/librarydb")
+mongoose.connect(process.env.MONGO_URI)
 .then(() => console.log("MongoDB Connected"))
 .catch(err => console.log("MongoDB Error:", err));
 
