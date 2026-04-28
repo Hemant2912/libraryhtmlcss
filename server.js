@@ -31,6 +31,13 @@ const Issued = mongoose.model("Issued", new mongoose.Schema({
 }));
 
 // Routes
+// Routes
+
+// ✅ Root route (add here)
+app.get("/", (req, res) => {
+    res.send("Library API is running 🚀");
+});
+
 app.get("/books", async (req, res) => {
     const books = await Book.find();
     res.json(books);
