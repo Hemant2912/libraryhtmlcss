@@ -4,7 +4,7 @@ document.getElementById("returnForm").onsubmit = async (e) => {
     const bookId = document.getElementById("returnBookId").value.trim();
     const studentId = document.getElementById("returnStudentId").value.trim();
 
-    const res = await fetch("/return", {
+    const res = await fetch("https://libraryhtmlcss.onrender.com/return", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ bookId, studentId })

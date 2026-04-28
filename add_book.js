@@ -5,7 +5,7 @@ document.getElementById("bookForm").addEventListener("submit", async (e) => {
     const author = document.getElementById("author").value;
     const stock = Number(document.getElementById("stock").value);
 
-    const response = await fetch("/books", {
+    const response = await fetch("https://libraryhtmlcss.onrender.com/books", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

@@ -4,9 +4,11 @@ document.getElementById("studentForm").addEventListener("submit", async (e) => {
     const studentId = document.getElementById("studentId").value;
     const name = document.getElementById("name").value;
 
-    const response = await fetch("/students", {
+    const response = await fetch("https://libraryhtmlcss.onrender.com/students", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { 
+            "Content-Type": "application/json" 
+        },
         body: JSON.stringify({ studentId, name })
     });
 

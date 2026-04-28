@@ -4,7 +4,7 @@ document.getElementById("issueForm").onsubmit = async (e) => {
     const bookId = document.getElementById("issueBookId").value.trim();
     const studentId = document.getElementById("issueStudentId").value.trim();
 
-    const res = await fetch("/issue", {
+    const res = await fetch("https://libraryhtmlcss.onrender.com/issue", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ bookId, studentId })

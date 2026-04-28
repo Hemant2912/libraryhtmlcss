@@ -1,5 +1,5 @@
 async function loadBooks() {
-    const response = await fetch("/books");
+    const response = await fetch("https://libraryhtmlcss.onrender.com/books");
     const books = await response.json();
 
     const tableBody = document.getElementById("booksTable");
