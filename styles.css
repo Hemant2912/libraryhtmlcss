@@ -197,3 +197,50 @@ th, td {
         text-align: left;
     }
 }
+@media (max-width: 600px) {
+
+    /* Make container fit screen */
+    .container {
+        padding: 10px;
+    }
+
+    .card {
+        width: 100%;
+        padding: 15px;
+        border-radius: 15px;
+    }
+
+    /* Hide table header */
+    thead {
+        display: none;
+    }
+
+    /* Convert rows to cards */
+    tr {
+        display: block;
+        background: #fff;
+        margin-bottom: 15px;
+        padding: 12px;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    /* Make each cell a line */
+    td {
+        display: block;
+        font-size: 14px;
+        padding: 5px 0;
+    }
+
+    /* Add labels before data */
+    td:nth-child(1)::before { content: "ID: "; font-weight: bold; }
+    td:nth-child(2)::before { content: "Title: "; font-weight: bold; }
+    td:nth-child(3)::before { content: "Author: "; font-weight: bold; }
+    td:nth-child(4)::before { content: "Stock: "; font-weight: bold; }
+
+    /* Make button full width */
+    button {
+        width: 100%;
+        margin-top: 10px;
+    }
+}
