@@ -21,27 +21,22 @@
 
         <p id="msg"></p>
 
-        <p>Already have an account?</p>
-        <a href="login.html">Login here</a>
+        <a href="login.html">Already have an account? Login</a>
     </div>
 </div>
 
-<!-- ✅ SCRIPT HERE -->
 <script>
-if (localStorage.getItem("token")) {
-    window.location.href = "index.html";
-}
+console.log("Signup script loaded ✅");
 
-document.getElementById("signupForm").addEventListener("submit", async (e) => {
+const form = document.getElementById("signupForm");
+
+form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("password").value.trim();
+    console.log("Form submitted 🚀");
 
-    if (!email || !password) {
-        document.getElementById("msg").textContent = "All fields required";
-        return;
-    }
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
 
     try {
         const res = await fetch("https://libraryhtmlcss.onrender.com/signup", {
@@ -54,6 +49,8 @@ document.getElementById("signupForm").addEventListener("submit", async (e) => {
 
         const data = await res.json();
 
+        console.log("Response:", data);
+
         document.getElementById("msg").textContent = data.message;
 
         if (data.message === "User created successfully") {
@@ -62,7 +59,8 @@ document.getElementById("signupForm").addEventListener("submit", async (e) => {
             }, 1000);
         }
 
-    } catch {
+    } catch (err) {
+        console.log("Error:", err);
         document.getElementById("msg").textContent = "Server error";
     }
 });
