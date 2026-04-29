@@ -9,13 +9,17 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static("public"));
 
-// ✅ ENV
 const JWT_SECRET = process.env.JWT_SECRET || "secret_key";
 
-// ✅ MongoDB Connection
+/* ===================== DB ===================== */
+
 mongoose.connect(process.env.MONGO_URI)
 .then(() => console.log("MongoDB Connected"))
 .catch(err => console.log("MongoDB Error:", err));
+
+mongoose.connection.on("error", (err) => {
+    console.log("🔥 MONGO ERROR:", err);
+});
 
 /* ===================== MODELS ===================== */
 
@@ -39,9 +43,10 @@ const Issued = mongoose.model("Issued", new mongoose.Schema({
     userId: String
 }));
 
+// ✅ FIXED USER MODEL
 const User = mongoose.model("User", new mongoose.Schema({
-    email: String,
-    password: String
+    email: { type: String, required: true, unique: true },
+    password: { type: String, required: true }
 }));
 
 /* ===================== AUTH ===================== */
@@ -62,25 +67,27 @@ function auth(req, res, next) {
 
 /* ===================== ROUTES ===================== */
 
-// Root
 app.get("/", (req, res) => {
     res.send("Library API is running 🚀");
 });
 
-/* ---------- AUTH ROUTES ---------- */
+/* ---------- SIGNUP (FIXED) ---------- */
 
-// ✅ FIXED Signup (with error logging)
 app.post("/signup", async (req, res) => {
     try {
         const { email, password } = req.body;
 
         if (!email || !password) {
-            return res.json({ message: "All fields required" });
+            return res.status(400).json({ message: "All fields required" });
+        }
+
+        if (password.length < 6) {
+            return res.status(400).json({ message: "Password must be at least 6 characters" });
         }
 
         const existingUser = await User.findOne({ email });
         if (existingUser) {
-            return res.json({ message: "User already exists" });
+            return res.status(400).json({ message: "User already exists" });
         }
 
         const hashedPassword = await bcrypt.hash(password, 10);
@@ -90,15 +97,18 @@ app.post("/signup", async (req, res) => {
             password: hashedPassword
         });
 
-        res.json({ message: "User created successfully" });
+        console.log("✅ USER CREATED:", email);
+
+        res.status(201).json({ message: "User created successfully" });
 
     } catch (err) {
-        console.log("🔥 SIGNUP ERROR:", err); // 👈 ADDED
+        console.log("🔥 SIGNUP ERROR:", err);
         res.status(500).json({ message: "Server error" });
     }
 });
 
-// Login
+/* ---------- LOGIN ---------- */
+
 app.post("/login", async (req, res) => {
     try {
         const { email, password } = req.body;
@@ -118,7 +128,7 @@ app.post("/login", async (req, res) => {
     }
 });
 
-/* ---------- BOOK ROUTES ---------- */
+/* ---------- BOOK ---------- */
 
 app.get("/books", auth, async (req, res) => {
     try {
@@ -157,7 +167,7 @@ app.post("/students", auth, async (req, res) => {
     }
 });
 
-/* ---------- ISSUE BOOK ---------- */
+/* ---------- ISSUE ---------- */
 
 app.post("/issue", auth, async (req, res) => {
     try {
@@ -184,7 +194,7 @@ app.post("/issue", auth, async (req, res) => {
     }
 });
 
-/* ---------- RETURN BOOK ---------- */
+/* ---------- RETURN ---------- */
 
 app.post("/return", auth, async (req, res) => {
     try {
