@@ -69,7 +69,7 @@ app.get("/", (req, res) => {
 
 /* ---------- AUTH ROUTES ---------- */
 
-// Signup
+// ✅ FIXED Signup (with error logging)
 app.post("/signup", async (req, res) => {
     try {
         const { email, password } = req.body;
@@ -92,7 +92,8 @@ app.post("/signup", async (req, res) => {
 
         res.json({ message: "User created successfully" });
 
-    } catch {
+    } catch (err) {
+        console.log("🔥 SIGNUP ERROR:", err); // 👈 ADDED
         res.status(500).json({ message: "Server error" });
     }
 });
