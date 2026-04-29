@@ -26,26 +26,44 @@
     </div>
 </div>
 
+<!-- ✅ SCRIPT HERE -->
 <script>
+if (localStorage.getItem("token")) {
+    window.location.href = "index.html";
+}
+
 document.getElementById("signupForm").addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
 
-    const res = await fetch("https://libraryhtmlcss.onrender.com/signup", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ email, password })
-    });
+    if (!email || !password) {
+        document.getElementById("msg").textContent = "All fields required";
+        return;
+    }
 
-    const data = await res.json();
-    document.getElementById("msg").textContent = data.message;
+    try {
+        const res = await fetch("https://libraryhtmlcss.onrender.com/signup", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ email, password })
+        });
 
-    if (data.message.includes("success")) {
-        window.location.href = "login.html";
+        const data = await res.json();
+
+        document.getElementById("msg").textContent = data.message;
+
+        if (data.message === "User created successfully") {
+            setTimeout(() => {
+                window.location.href = "login.html";
+            }, 1000);
+        }
+
+    } catch {
+        document.getElementById("msg").textContent = "Server error";
     }
 });
 </script>
