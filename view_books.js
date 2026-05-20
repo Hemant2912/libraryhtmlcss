@@ -35,7 +35,7 @@ async function loadBooks() {
         const row = document.createElement("tr");
 
         row.innerHTML = `
-            <td>${book._id.slice(0,6)}...${book._id.slice(-4)}</td>
+            <td>${book._id}</td>
             <td>${book.title}</td>
             <td>${book.author}</td>
             <td>${book.stock}</td>
